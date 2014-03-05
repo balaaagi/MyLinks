@@ -15,7 +15,7 @@ exports.linklist=function(db){
 	return function(req,res){
 		var collection=db.get('links');
 		collection.find({},{},function(e,docs){
-			res.render('userlist',
+			res.render('linklist',
 				{"linklist":docs
 			});
 
