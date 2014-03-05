@@ -11,7 +11,7 @@ var path = require('path');
 
 var mongo=require('mongodb');
 var monk=require('monk');
-var db=monk('localhost:27017/nodetest1');
+var db=monk('localhost:27017/mylinks');
 
 var app = express();
 
@@ -37,7 +37,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/helloworld',routes.helloworld);
-app.get('/userlist',routes.userlist(db));
+app.get('/linklist',routes.linklist(db));
 app.get('/newuser',routes.newuser);
 app.post('/adduser',routes.adduser(db));
 

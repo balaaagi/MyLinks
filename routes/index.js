@@ -4,19 +4,19 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'My Links' });
 };
 
 exports.helloworld =function(req,res){
 	res.render('helloworld',{title:'Hello, World!'});
 };
 
-exports.userlist=function(db){
+exports.linklist=function(db){
 	return function(req,res){
-		var collection=db.get('usercollection');
+		var collection=db.get('links');
 		collection.find({},{},function(e,docs){
 			res.render('userlist',
-				{"userlist":docs
+				{"linklist":docs
 			});
 
 		});
@@ -49,7 +49,7 @@ exports.adduser = function(db) {
             }
             else {
                 // If it worked, set the header so the address bar doesn't still say /adduser
-                res.location("userlist");
+                res.location("/userlist");
                 // And forward to success page
                 res.redirect("userlist");
             }
