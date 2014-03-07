@@ -35,7 +35,8 @@ exports.newlink=function(req,res){
 exports.addlink=function(db){
     return function(req,res){
         var url=req.body.link;
-        var tags=req.body.tags;
+        var tags=[];
+        tags=req.body.tags.split(",");
 
         var collection=db.get('links');
 
@@ -60,6 +61,7 @@ exports.adduser = function(db) {
         // Get our form values. These rely on the "name" attributes
         var userName = req.body.username;
         var userEmail = req.body.useremail;
+
 
         // Set our collection
         var collection = db.get('usercollection');
