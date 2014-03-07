@@ -28,6 +28,32 @@ exports.newuser=function(req,res){
 	res.render('newuser',{title: 'New User'});
 };
 
+exports.newlink=function(req,res){
+    res.render('newlink',{title:'Add New Link'});
+};
+
+exports.addlink=function(db){
+    return function(req,res){
+        var url=req.body.link;
+        var tags=req.body.tags;
+
+        var collection=db.get('links');
+
+        collection.insert({
+            "link":url,
+            "tag":tags
+        },function(err,doc){
+            if(err){
+                res.send("There was some problem during insertions of linkes");
+            }
+           else{
+                res.location("/linklist");
+                res.redirect("linklist");
+           } 
+        });
+    }
+}
+
 exports.adduser = function(db) {
     return function(req, res) {
 
