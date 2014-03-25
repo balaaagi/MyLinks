@@ -32,6 +32,15 @@ exports.newlink=function(req,res){
     res.render('newlink',{title:'Add New Link'});
 };
 
+exports.showtags=function(db){
+    return function(req,res){
+        db.collection('links').distinct('tag',function(err,items){
+            res.json(items);
+        })
+    }
+
+};
+
 exports.addlink=function(db){
     return function(req,res){
         var url=req.body.link;

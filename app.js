@@ -9,9 +9,10 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
-var mongo=require('mongodb');
-var monk=require('monk');
-var db=monk('localhost:27017/mylinks');
+//var mongo=require('mongodb');
+var mongo=require('mongoskin');
+//var db=monk('localhost:27017/mylinks');
+var db=mongo.db("mongodb://localhost:27017/mylinks",{native_parser:true});
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.get('/helloworld',routes.helloworld);
 app.get('/linklist',routes.linklist(db));
 app.get('/newlink',routes.newlink);
 app.post('/addlink',routes.addlink(db));
+app.get('/showtags',routes.showtags(db));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
