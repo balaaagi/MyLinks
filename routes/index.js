@@ -13,10 +13,14 @@ exports.helloworld =function(req,res){
 
 exports.linklist=function(db){
 	return function(req,res){
-		var collection=db.get('links');
-		collection.find({},{},function(e,docs){
-			res.render('linklist',
-				{"linklist":docs
+/*        db.collection('links').find({},{},function(err,result){
+            res.render('linklist',
+                {"linklist":result});
+        });*/
+		//var collection=db.get('links');
+		db.collection('links').find().toArray(function(e,docs){
+			res.render('linklist',{
+				linklist:docs
 			});
 
 		});
