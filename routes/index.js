@@ -51,9 +51,9 @@ exports.addlink=function(db){
         var tags=[];
         tags=req.body.tags.split(",");
 
-        var collection=db.get('links');
+        //var collection=db.get('links');
 
-        collection.insert({
+        db.collection('links').insert({
             "link":url,
             "tag":tags
         },function(err,doc){
